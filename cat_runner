@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+set -x
+
+ENVIRONMENT=${ENVIRONMENT:-int}
+CONCURRENT=${CONCURRENT:-250}
+TIME=${TIME:-15m}
+EMAIL=${EMAIL:-root}
+
+URLS="${HOME}/.catz/${ENVIRONMENT}_urls"
+
+MSG="$(date)\n$(/usr/bin/siege -f ${URLS} -c ${CONCURRENT} -q -t ${TIME} 2>&1| grep 'Transaction rate' | awk -F: '{print $2}')\n$(date)"
+
+F=$(ls $(dirname ${BASH_SOURCE[0]})/cats/*.gif|shuf -n 1)
+OUTPUT="$(date +%s)".gif
+
+WIDTH=$(identify -format %w ${F})
+
+convert $F -gravity Center -stroke '#000C' -pointsize 25 -size ${WIDTH}x30 -strokewidth 2 -annotate 0  "${MSG}" -stroke  none -pointsize 25 -size ${WIDTH}x30 -fill white -annotate 0 "${MSG}" ${OUTPUT}
+
+echo | mutt  -s "[Siege] ${ENVIRONMENT} siege results over ${TIME}; $(hostname)" -a ${OUTPUT} -- ${EMAIL}
