@@ -34,3 +34,8 @@ Notes
 ---
 
 Environment files are stored at ~/.catz/
+
+Example Output
+--
+
+![output animation](examples/example1.gif)
