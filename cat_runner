@@ -18,4 +18,4 @@ WIDTH=$(identify -format %w ${F})
 
 convert $F -gravity Center -stroke '#000C' -pointsize 25 -size ${WIDTH}x30 -strokewidth 2 -annotate 0  "${MSG}" -stroke  none -pointsize 25 -size ${WIDTH}x30 -fill white -annotate 0 "${MSG}" ${OUTPUT}
 
-echo | mutt  -s ${SUBJECT} -a ${OUTPUT} -- ${EMAIL}
+echo | mutt  -s "${SUBJECT}" -a ${OUTPUT} -- ${EMAIL}
