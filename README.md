@@ -23,8 +23,11 @@ Environment
 ---
 
 CONCURRENT: Number of concurrent users to simulate
+
 TIME: Length of time to run as; accepts a unit
+
 ENVIRONMENT: This actually translates as `${ENVIRONMENT}_urls`; a file containing urls to hit
+
 EMAIL: The address to email results to
 
 Notes
