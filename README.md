@@ -12,7 +12,7 @@ to run some load tests against a host and email the results as a gif of a cat.
 
 Thats kinda it.
 
-Invocatio
+Invocation
 ---
 
 ```bash
